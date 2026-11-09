@@ -1,0 +1,5 @@
+"use server";
+import {redirect} from "next/navigation";
+import {createClient} from "@/lib/supabase/server";
+export async function signIn(data:FormData){const email=String(data.get("email")??"").trim();const password=String(data.get("password")??"");if(!email||!password)redirect("/login?error=missing-fields");let supabase;try{supabase=await createClient();}catch{redirect("/login?error=not-configured");}const {error}=await supabase.auth.signInWithPassword({email,password});if(error)redirect("/login?error=invalid-credentials");redirect("/admin");}
+export async function requestPasswordReset(data:FormData){const email=String(data.get("email")??"").trim();if(!email)redirect("/login?error=missing-email");let supabase;try{supabase=await createClient();}catch{redirect("/login?error=not-configured");}const {error}=await supabase.auth.resetPasswordForEmail(email,{redirectTo:`${process.env.NEXT_PUBLIC_SITE_URL??"http://localhost:3000"}/auth/callback?next=/reset-password`});if(error)redirect("/login?error=reset-unavailable");redirect("/login?message=reset-requested");}
