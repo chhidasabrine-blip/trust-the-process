@@ -6,7 +6,7 @@ Statuses: **Not Started**, **In Progress**, **Implemented**, **Connected**, **Te
 |---|---|---|---|
 | 0 | Execution rules and acceptance discipline | Implemented | Register and staged implementation policy committed. |
 | 1–2 | Product vision and brand identity | Implemented | Two-platform architecture documented; exact palette tokens established. |
-| 3 | Private management shell and authentication | In Progress | Supabase SSR login/logout/reset scaffolded; needs project credentials, owner account and live tests. |
+| 3 | Private management shell and authentication | In Progress | Supabase project connected; SSR auth and owner gate scaffolded; owner account and live login tests pending. |
 | 4 | Dashboard and business analytics | Not Started | Must use reconciled live database metrics. |
 | 5 | Product and variant management | Not Started | Normalized catalog and independent variant stock pending. |
 | 6 | Custom orders and personalization | Not Started | Request, revisions, approvals and production gate pending. |
@@ -35,13 +35,13 @@ Statuses: **Not Started**, **In Progress**, **Implemented**, **Connected**, **Te
 | 29 | Reports and business intelligence | Not Started | Reconciled exports and timestamps pending. |
 | 30 | Document generation | Not Started | Branded operational PDFs pending legal review where applicable. |
 | 31 | Settings | Not Started | Tunisia/TND/Africa-Tunis/French defaults pending. |
-| 32 | Database and technical architecture | In Progress | Architecture documented; initial auth/RBAC/audit migration committed. |
-| 33 | Security and reliability | In Progress | SSR auth scaffold and boundaries documented; RLS tests pending. |
+| 32 | Database and technical architecture | In Progress | Supabase project connected; identity/access/audit schema applied and inspected. |
+| 33 | Security and reliability | In Progress | Signed-claim owner checks and RLS enabled; owner authorization and full policy tests pending. |
 | 34 | Performance, SEO and accessibility | Not Started | Baseline metadata and responsive CSS exist; audits pending. |
 | 35 | Backup, restore and ownership | Not Started | Strategy, exports and restore drill pending. |
-| 36 | Required testing | Not Started | No workflow marked passed before execution. |
+| 36 | Required testing | In Progress | CI workflow added; first CI attempt exposed missing lockfile cache configuration and was corrected; checks pending rerun. |
 | 37 | Eight implementation phases | Implemented | Phase order preserved in this plan. |
-| 38 | Cost and external-service transparency | Implemented | No paid service or subscription enabled. |
+| 38 | Cost and external-service transparency | Implemented | Supabase project created at quoted $0/month; hosting and integrations not enabled. |
 | 39 | Completion register | Implemented | V4 section coverage recorded here. |
 | 40–41 | Acceptance criteria and final execution | In Progress | Acceptance criteria retained; implementation continues phase by phase. |
 
@@ -49,8 +49,8 @@ Statuses: **Not Started**, **In Progress**, **Implemented**, **Connected**, **Te
 - [x] Repository scaffold and brand tokens committed.
 - [x] Architecture and dependency boundaries documented.
 - [x] V4 feature register created without removing scope.
-- [ ] Supabase project connected.
-- [ ] Initial SQL migration applied and RLS verified.
+- [x] Supabase project connected.
+- [x] Initial SQL migration applied; foundation tables and RLS enablement verified.
 - [ ] Owner account created and role authorization verified.
 - [ ] Password recovery email configured and tested.
 - [ ] Typecheck, lint and production build executed successfully.
