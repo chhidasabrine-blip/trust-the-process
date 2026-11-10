@@ -12,15 +12,16 @@ export async function middleware(request: NextRequest) {
 
   const supabase = createServerClient(url, key, {
     cookies: {
-      getAll: () => request.cookies.getAll(),
-      setAll(items, headers) {
-        items.forEach(({ name, value }) => request.cookies.set(name, value));
-        response = NextResponse.next({ request });
-        items.forEach(({ name, value, options }) =>
-          response.cookies.set(name, value, options)
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookiesToSet) {
+        cookiesToSet.forEach(({ name, value }) =>
+          request.cookies.set(name, value)
         );
-        Object.entries(headers).forEach(([name, value]) =>
-          response.headers.set(name, value)
+        response = NextResponse.next({ request });
+        cookiesToSet.forEach(({ name, value, options }) =>
+          response.cookies.set(name, value, options)
         );
       },
     },
@@ -28,7 +29,8 @@ export async function middleware(request: NextRequest) {
 
   // getClaims validates the JWT signature before using its subject.
   const { data } = await supabase.auth.getClaims();
-  const userId = data?.claims?.sub;
+  const userId =
+    typeof data?.claims?.sub === "string" ? data.claims.sub : null;
 
   const destination = new URL("/login", request.url);
   if (!userId) {
